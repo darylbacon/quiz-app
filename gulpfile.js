@@ -11,7 +11,7 @@ const terser = require('gulp-terser')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
-// var replace = require('gulp-replace')
+var replace = require('gulp-replace')
 var browserSync = require('browser-sync').create()
 
 // SETTINGS
@@ -64,12 +64,12 @@ function jsTask(){
 }
 
 // Cachebust
-// function cacheBustTask(){
-//   var cbString = new Date().getTime();
-//   return src(['index.html'])
-//     .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
-//     .pipe(dest('.'));
-// }
+function cacheBustTask(){
+  var cbString = new Date().getTime();
+  return src([cfg.index.src])
+    .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
+    .pipe(dest('./public'));
+}
 
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
@@ -78,7 +78,7 @@ function watchTask(){
     {interval: 1000, usePolling: true}, //Makes docker work
     series(
       parallel(scssTask, jsTask),
-      // cacheBustTask,
+      cacheBustTask,
       reloadServer
     )
   );
@@ -104,7 +104,7 @@ function serve(done) {
 // then runs cacheBust, then watch task
 exports.default = series(
   parallel(scssTask, jsTask),
-  // cacheBustTask,
+  cacheBustTask,
   serve,
   watchTask
 );
