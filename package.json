@@ -1,0 +1,34 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darylbacon/quiz-app.git"
+  },
+  "author": "Daryl Bacon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darylbacon/quiz-app/issues"
+  },
+  "homepage": "https://github.com/darylbacon/quiz-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "autoprefixer": "^9.7.5",
+    "browser-sync": "^2.26.7",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-standard": "^14.0.0",
+    "gulp-terser": "^1.2.0"
+  }
+}
