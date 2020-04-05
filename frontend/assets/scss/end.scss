@@ -1,0 +1,70 @@
+$text-color: #333333;
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports any extra SASS Libraries
+////////////////////////////////////////////////////////////////////////////////
+@import './libraries/floatLabel';
+
+#end {
+  form {
+    text-align: center;
+    width: 100%;
+    max-width: 30rem;
+    font-size: 16px;
+
+    // Override floatLabel default colours
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background-color: #ecf5ff;
+
+      &:focus {
+        border-color: #56a5eb;
+      }
+    }
+
+    .contact-submit {
+      background-color: #464646;
+      border: none;
+      color: #ffffff;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      background-color: #56a5eb;
+      font-size: 20px;
+      margin: 20px auto 0;
+      border-radius: 2px;
+      box-shadow: 0px 0px 4px 1px lighten(#272727, 20%);
+      outline: none;
+      background-position: center;
+      transition: all 0.3s ease-in-out, background 0.8s;
+
+
+        // @include media(screen, min, 768px) {
+        //   width: 50%;
+        // }
+
+        // &:before {
+          // color: white;
+          // display: block;
+          // padding-top: 2px;
+        // }
+
+        // &:hover {
+        //   background: color(buttonHover) radial-gradient(circle, transparent 1%, color(buttonHover) 1%) center/15000%;
+        // }
+
+        // &:active {
+        //   background-color: color(buttonActive);
+        //   background-size: 100%;
+        //   transition: background 0s;
+        // }
+    }
+
+  }
+}
