@@ -49,7 +49,7 @@ function jsTask(){
     cfg.scripts.src
     //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
     ])
-    .pipe(concat(cfg.scripts.filename))
+    // .pipe(concat(cfg.scripts.filename))
     .pipe(babel({
       // Transpile the JS code using Babel's preset-env.
       presets: [

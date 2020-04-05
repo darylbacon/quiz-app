@@ -1,1 +1,1 @@
-window.addEventListener("DOMContentLoaded",(function(d){console.log("DOM fully loaded and parsed")}));
+window.addEventListener("DOMContentLoaded",(function(e){console.log("DOM fully loaded and parsed")})),window.addEventListener("DOMContentLoaded",(function(e){console.log("DOM fully loaded and parsed on the game page")}));
