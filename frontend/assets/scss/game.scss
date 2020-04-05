@@ -13,6 +13,14 @@
     transition: transform 150ms;
   }
 
+  &.correct {
+    background-color: #28a745;
+  }
+
+  &.incorrect {
+    background-color: #dc3545;
+  }
+
   .choice-prefix {
     padding: 1.5rem 2.5rem;
     background-color: #56a5eb;
@@ -21,5 +29,6 @@
 
   .choice-text {
     padding: 1.5rem;
+    width: 100%;
   }
 }

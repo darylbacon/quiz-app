@@ -63,8 +63,13 @@ choices.forEach(choice => {
 
       const selectedChoice = choice
       const selectedAnswer = selectedChoice.dataset['number']
-      console.log(selectedAnswer)
-      getNewQuestion()
+      const classStatus = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+      choice.classList.add(classStatus)
+      setTimeout(() => {
+        choice.classList.remove(classStatus)
+        getNewQuestion()
+      }, 1000);
     }
   })
 })
