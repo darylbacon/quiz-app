@@ -4,12 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App - Play</title>
-  <link rel="stylesheet" href="./assets/css/main.css?cb=1586099616269">
-  <link rel="stylesheet" href="./assets/css/game.css?cb=1586099616269">
+  <link rel="stylesheet" href="./assets/css/main.css?cb=1586101738210">
+  <link rel="stylesheet" href="./assets/css/game.css?cb=1586101738210">
 </head>
 <body>
   <main class="container">
     <div id="game" class="justify-center flex-column">
+      <section class="hud">
+        <div class="hud-item">
+          <p class="hud-prefix">Question</p>
+          <h3 class="hud-main-text" el="question-counter"></h3>
+        </div>
+        <div class="hud-item">
+          <p class="hud-prefix">Score</p>
+          <h3 class="hud-main-text" el="score-counter">0</h3>
+        </div>
+      </section>
       <h2 id="question" el="question">What is the answer to this question?</h2>
       <div class="choice-container" el="choice" data-number="1">
         <p class="choice-prefix">A</p>
@@ -30,6 +40,6 @@
     </div>
   </main>
 
-  <script type="text/javascript" src="./assets/js/game.js?cb=1586099616269"></script>
+  <script type="text/javascript" src="./assets/js/game.js?cb=1586101738210"></script>
 </body>
 </html>

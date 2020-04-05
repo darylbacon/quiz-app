@@ -1,16 +1,26 @@
-// Import anything here
+/**
+ * Import anything needed here
+ */
 // import something from 'something'
 
-// DOM selectors
+/**
+ * DOM Selectors
+ */
 const selectors = {
+  questionCounter: '[el="question-counter"]',
+  scoreCounter: '[el="score-counter"]',
   question: '[el="question"]',
   choices: '[el="choice"]',
-  choiceText: '[el="choice-text"]'
+  choiceText: '[el="choice-text"]',
 }
-
 const question = document.querySelector(selectors.question)
 const choices = [...document.querySelectorAll(selectors.choices)]
+let questionCounterText = document.querySelector(selectors.questionCounter)
+let scoreCounterText = document.querySelector(selectors.scoreCounter)
 
+/**
+ * Other global variables
+ */
 let currentQuestion = {};
 let acceptingAnswers = false;
 let score = 0;
@@ -48,12 +58,16 @@ let questions = [
 const correctBonus = 10
 const maxQuestions = 3
 
-// Initialise script
+/**
+ * Initialise script
+ */
 const init = () => {
   startGame()
 }
 
-// Click event listeners
+/**
+ * Click events
+ */
 choices.forEach(choice => {
   choice.addEventListener('click', e => {
     if (!acceptingAnswers) {
@@ -63,7 +77,12 @@ choices.forEach(choice => {
 
       const selectedChoice = choice
       const selectedAnswer = selectedChoice.dataset['number']
-      const classStatus = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+      let classStatus = 'incorrect'
+
+      if (selectedAnswer == currentQuestion.answer) {
+        classStatus = 'correct'
+        incrementScore(correctBonus)
+      }
 
       choice.classList.add(classStatus)
       setTimeout(() => {
@@ -74,6 +93,9 @@ choices.forEach(choice => {
   })
 })
 
+/**
+ * Start game function
+ */
 const startGame = () => {
   questionCounter = 0
   score = 0
@@ -83,13 +105,18 @@ const startGame = () => {
   getNewQuestion()
 }
 
-getNewQuestion = () => {
+/**
+ * Get a new question function
+ */
+const getNewQuestion = () => {
   // show the end page if there's no more question
   if (availableQuestions.length === 0 || questionCounter >= maxQuestions) {
     return window.location.assign('/end.html')
   }
 
   questionCounter++
+  // Update the question number for the user
+  questionCounterText.innerText = `${questionCounter}/${maxQuestions}`
   // get a random number based on the amount of questions
   const questionIndex = Math.floor(Math.random() * availableQuestions.length)
   currentQuestion = availableQuestions[questionIndex]
@@ -110,6 +137,14 @@ getNewQuestion = () => {
   acceptingAnswers = true
 }
 
+const incrementScore = num => {
+  score += num
+  scoreCounterText.innerText = score
+}
+
+/**
+ * Wait for the page to load before initialising JS
+ */
 window.addEventListener('DOMContentLoaded', () => {
   init()
 })

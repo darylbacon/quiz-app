@@ -32,3 +32,21 @@
     width: 100%;
   }
 }
+
+/* HUD */
+.hud {
+  display: flex;
+  justify-content: space-between;
+
+  .hud-prefix {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .hud-main-text {
+    font-size: 5.4rem;
+    color: #56a5eb;
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+}
