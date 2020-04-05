@@ -27,7 +27,7 @@ var cfg = {
     dist: './public/assets/css/'
   },
   index: {
-    src: './public/index.html'
+    src: './public/**/*.html'
   }
 }
 
