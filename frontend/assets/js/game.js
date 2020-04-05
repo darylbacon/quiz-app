@@ -7,6 +7,7 @@
  * DOM Selectors
  */
 const selectors = {
+  progressBar: '[el="progress-bar-full"]',
   questionCounter: '[el="question-counter"]',
   scoreCounter: '[el="score-counter"]',
   question: '[el="question"]',
@@ -15,17 +16,18 @@ const selectors = {
 }
 const question = document.querySelector(selectors.question)
 const choices = [...document.querySelectorAll(selectors.choices)]
+let progressBar = document.querySelector(selectors.progressBar)
 let questionCounterText = document.querySelector(selectors.questionCounter)
 let scoreCounterText = document.querySelector(selectors.scoreCounter)
 
 /**
  * Other global variables
  */
-let currentQuestion = {};
-let acceptingAnswers = false;
-let score = 0;
-let questionCounter = 0;
-let availableQuestions = [];
+let currentQuestion = {}
+let acceptingAnswers = false
+let score = 0
+let questionCounter = 0
+let availableQuestions = []
 
 let questions = [
   {
@@ -101,7 +103,6 @@ const startGame = () => {
   score = 0
   // get complete copy of question array using spread operator
   availableQuestions = [...questions]
-  console.log(availableQuestions)
   getNewQuestion()
 }
 
@@ -117,6 +118,8 @@ const getNewQuestion = () => {
   questionCounter++
   // Update the question number for the user
   questionCounterText.innerText = `${questionCounter}/${maxQuestions}`
+  // Update the progress bar percentage
+  progressBar.style.width = `${(questionCounter/maxQuestions) * 100}%`
   // get a random number based on the amount of questions
   const questionIndex = Math.floor(Math.random() * availableQuestions.length)
   currentQuestion = availableQuestions[questionIndex]
