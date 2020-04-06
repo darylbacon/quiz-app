@@ -9,19 +9,22 @@
 const selectors = {
   finalScore: '[el="final-score"]',
   fields: '[el="input-group"]',
-  field: '[el="field"]',
+  username: '[el="username"]',
   clearBtn: '[el="clear"]',
   saveScoreBtn: '[el="save-score-btn"]'
 }
 
 const finalScore = document.querySelector(selectors.finalScore)
 const fields = document.querySelectorAll(selectors.fields)
+const username = document.querySelector(selectors.username)
 const saveScoreBtn = document.querySelector(selectors.saveScoreBtn)
 
 /**
  * Other global variables
  */
 const mostRecentScore = localStorage.getItem('mostRecentScore')
+const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+const scoresToShow = 5
 
 /**
  * Initialise script
@@ -50,9 +53,8 @@ const updateFinalScore = mostRecentScore => {
  */
 const showHideFormClear = () => {
   fields.forEach(field => {
-    const input = field.querySelector(selectors.field)
+    const input = field.querySelector(selectors.username)
     const clearBtn = field.querySelector(selectors.clearBtn)
-    console.log(input.name)
 
     input.addEventListener('input', () => {
       clearBtn.classList.remove('dni')
@@ -81,6 +83,22 @@ const showHideFormClear = () => {
 
 const saveHighScore = event => {
   event.preventDefault()
+
+  const score = {
+    score: mostRecentScore,
+    name: username.value
+  }
+
+  // Push score to the array
+  highScores.push(score)
+  // Sort the highscore high to low
+  highScores.sort((a,b) => b.score - a.score)
+  // Limit the amount of scores
+  highScores.splice(scoresToShow)
+
+  localStorage.setItem('highScores', JSON.stringify(highScores))
+
+  window.location.assign('/')
 }
 
 /**
