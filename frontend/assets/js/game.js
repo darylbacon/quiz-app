@@ -112,6 +112,7 @@ const startGame = () => {
 const getNewQuestion = () => {
   // show the end page if there's no more question
   if (availableQuestions.length === 0 || questionCounter >= maxQuestions) {
+    localStorage.setItem('mostRecentScore', score)
     return window.location.assign('/end.html')
   }
 

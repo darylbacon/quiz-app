@@ -4,27 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Congratulations!</title>
-  <link rel="stylesheet" href="./assets/css/main.css?cb=1586119930317">
-  <link rel="stylesheet" href="./assets/css/end.css?cb=1586119930317">
+  <link rel="stylesheet" href="./assets/css/main.css?cb=1586193634161">
+  <link rel="stylesheet" href="./assets/css/end.css?cb=1586193634161">
 </head>
 <body>
   <main class="container">
     <div id="end" class="flex-center flex-column">
       <h1 class="final-score" el="final-score">0</h1>
         <form action="" method="post" class="" id="test">
-          <div class="input-group">
+          <div class="input-group" el="input-group">
             <label class="floatLabel">
               <input type="text" name="username" value="" placeholder="Username" el="field" lpignore="true">
               <span>Username</span>
               <i class="fas fa-times-circle clear dni" el="clear"></i>
             </label>
           </div>
-          <input type="submit" name="contactSubmit" class="btn" value="Submit">
-				</form>
+          <button type="submit" class="btn" el="save-score-btn" disabled>Save</button>
+          <!-- <input type="submit" class="btn" el="save-score-btn" value="Save"> -->
+        </form>
+        <a class="btn" href="/game.html">Play again</a>
+      <a class="btn" href="/">Home</a>
     </div>
   </main>
 
   <script src="https://kit.fontawesome.com/0500fde5a5.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="./assets/js/end.js?cb=1586119930317"></script>
+  <script type="text/javascript" src="./assets/js/end.js?cb=1586193634161"></script>
 </body>
 </html>
