@@ -74,12 +74,30 @@ choices.forEach(choice => {
  * Get Questions
  */
 const getQuestions = () => {
-  fetch('./assets/questions.json')
+  fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple')
     .then(res => {
       return res.json()
     })
     .then(loadedQuestions => {
-      questions = loadedQuestions
+      // console.log(loadedQuestions.results)
+      questions = loadedQuestions.results.map(loadedQuestion => {
+        const formattedQuestion = {
+          question: loadedQuestion.question
+        }
+        // console.log(formattedQuestion)
+
+        const answerChoices = [...loadedQuestion.incorrect_answers]
+        // Put the answer in a random position in the array
+        formattedQuestion.answer = Math.floor(Math.random() * 3) + 1
+        // Minus 1 to make it zero based index
+        answerChoices.splice(formattedQuestion.answer - 1, 0, loadedQuestion.correct_answer)
+
+        // Add choices to the formattedQuestion object
+        answerChoices.forEach((choice, index) => {
+          formattedQuestion[`choice${index+1}`] = choice
+        })
+        return formattedQuestion
+      })
       startGame()
     })
     .catch(err => {
