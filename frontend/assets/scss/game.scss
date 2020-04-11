@@ -1,14 +1,26 @@
+////////////////////////////////////////////////////////////////////////////////
+// Imports external font library
+////////////////////////////////////////////////////////////////////////////////
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Montserrat&display=swap');
+
+////////////////////////////////////////////////////////////////////////////////
+// Imports the Variables, Mixins & Functions
+////////////////////////////////////////////////////////////////////////////////
+
+@import 'functions';
+@import 'vars';
+
 .choice-container {
   display: flex;
   margin-bottom: 0.5rem;
   width: 100%;
   font-size: 1.8rem;
-  border: 0.1rem solid rgba(86, 165, 235, 0.25);
+  border: 0.1rem solid color(shadow);
   background-color: #ffffff;
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+    box-shadow: 0 0.4rem 1.4rem 0 color(hoverShadow);
     transform: translateY(-0.1rem);
     transition: transform 150ms;
   }
@@ -27,7 +39,7 @@
 
   .choice-prefix {
     padding: 1.5rem 2.5rem;
-    background-color: #56a5eb;
+    background-color: color(accent);
     color: #ffffff;
   }
 
@@ -49,7 +61,7 @@
 
   .hud-main-text {
     font-size: 5.4rem;
-    color: #56a5eb;
+    color: color(accent);
     margin-bottom: 5rem;
     text-align: center;
   }
@@ -63,7 +75,7 @@
   height:1rem;
 
   .progress-bar-full {
-    background-color: #56a5eb;
+    background-color: color(highlight);
     height: 1rem;
     width: 0%;
   }
@@ -73,7 +85,7 @@
 .loader {
   border: 1.6rem solid #ffffff;
   border-radius: 50%;
-  border-top: 1.6rem solid #56a5eb;
+  border-top: 1.6rem solid color(highlight);
   width: 12rem;
   height: 12rem;
   animation: spin 1.2s linear infinite;

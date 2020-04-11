@@ -1,0 +1,28 @@
+// Style description: Variables for the styling
+// Style author			: Daryl Bacon
+// Created date			: 21.10.2019
+
+////////////////////////////////////////////////////////////////////////////////
+// Color settings - HSL Format - Strings so transparency can be added
+////////////////////////////////////////////////////////////////////////////////
+
+$colors: (
+  dark       : hsl(260, 3%, 21%),
+  grey       : hsl(40, 1%, 55%),
+  light      : hsl(0, 0%, 96%),
+  accent     : hsl(192, 40%, 42%),
+  shadow     : hsla(192, 40%, 42%, 0.25),
+  highlight  : hsl(191, 81%, 64%),
+  hoverShadow: hsla(191, 81%, 64%, 0.5),
+);
+
+////////////////////////////////////////////////////////////////////////////////
+// Paragraph settings
+////////////////////////////////////////////////////////////////////////////////
+
+$baseline-px	: 10px;
+
+$font-1				: 'Montserrat', Arial, sans-serif;
+$font-2 			: 'Merriweather', Arial, sans-serif;
+
+$text-color   : color(dark)

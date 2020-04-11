@@ -37,7 +37,7 @@ let availableQuestions = []
 let questions = []
 
 const correctBonus = 10
-const maxQuestions = 3
+const maxQuestions = 10
 
 /**
  * Initialise script
@@ -79,7 +79,7 @@ choices.forEach(choice => {
  * Get Questions
  */
 const getQuestions = () => {
-  fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple')
+  fetch(`https://opentdb.com/api.php?amount=${maxQuestions}&category=9&difficulty=easy&type=multiple`)
     .then(res => {
       return res.json()
     })
