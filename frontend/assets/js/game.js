@@ -8,12 +8,17 @@
  */
 const selectors = {
   progressBar: '[el="progress-bar-full"]',
+  loader: '[el="loader"]',
+  game: '[el="game"]',
   questionCounter: '[el="question-counter"]',
   scoreCounter: '[el="score-counter"]',
   question: '[el="question"]',
   choices: '[el="choice"]',
   choiceText: '[el="choice-text"]',
 }
+
+const loader = document.querySelector(selectors.loader)
+const game = document.querySelector(selectors.game)
 const question = document.querySelector(selectors.question)
 const choices = [...document.querySelectorAll(selectors.choices)]
 let progressBar = document.querySelector(selectors.progressBar)
@@ -79,12 +84,10 @@ const getQuestions = () => {
       return res.json()
     })
     .then(loadedQuestions => {
-      // console.log(loadedQuestions.results)
       questions = loadedQuestions.results.map(loadedQuestion => {
         const formattedQuestion = {
           question: loadedQuestion.question
         }
-        // console.log(formattedQuestion)
 
         const answerChoices = [...loadedQuestion.incorrect_answers]
         // Put the answer in a random position in the array
@@ -96,6 +99,7 @@ const getQuestions = () => {
         answerChoices.forEach((choice, index) => {
           formattedQuestion[`choice${index+1}`] = choice
         })
+
         return formattedQuestion
       })
       startGame()
@@ -103,17 +107,20 @@ const getQuestions = () => {
     .catch(err => {
       console.error(err)
     })
-}
+  }
 
-/**
- * Start game function
- */
-const startGame = () => {
-  questionCounter = 0
-  score = 0
-  // get complete copy of question array using spread operator
-  availableQuestions = [...questions]
-  getNewQuestion()
+  /**
+   * Start game function
+   */
+  const startGame = () => {
+    questionCounter = 0
+    score = 0
+    // get complete copy of question array using spread operator
+    availableQuestions = [...questions]
+    getNewQuestion()
+    // hide the spinner and show the quiz
+    loader.classList.add('hidden')
+    game.classList.remove('hidden')
 }
 
 /**
@@ -135,14 +142,14 @@ const getNewQuestion = () => {
   const questionIndex = Math.floor(Math.random() * availableQuestions.length)
   currentQuestion = availableQuestions[questionIndex]
   // set the text of the question to that random question
-  question.innerText = currentQuestion.question
+  question.innerText = decodeEntities(currentQuestion.question)
 
   // loop over choices and set the choice to the random question answers
   choices.forEach(choice => {
     const number = choice.dataset['number']
     const choiceText = choice.querySelector(selectors.choiceText)
 
-    choiceText.innerText = currentQuestion[`choice${number}`]
+    choiceText.innerText = decodeEntities(currentQuestion[`choice${number}`])
   })
 
   // get rid of the question that has just been used so it doesn't appear again
@@ -155,6 +162,29 @@ const incrementScore = num => {
   score += num
   scoreCounterText.innerText = score
 }
+
+/**
+ * Helper Functions
+ */
+const decodeEntities = (function() {
+  // this prevents any overhead from creating the object each time
+  var element = document.createElement('div')
+
+  function decodeHTMLEntities (str) {
+    if(str && typeof str === 'string') {
+      // strip script/html tags
+      str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '')
+      str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '')
+      element.innerHTML = str
+      str = element.textContent
+      element.textContent = ''
+    }
+
+    return str
+  }
+
+  return decodeHTMLEntities
+})()
 
 /**
  * Wait for the page to load before initialising JS
